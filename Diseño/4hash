@@ -1,0 +1,58 @@
+class Node:
+    def __init__(self, value):
+        self.prev = None
+        self.count = None
+        self.value = value
+        self.listt=[None]
+    def previo(self,nodo):
+        self.prev=nodo
+    def getvalue(self):
+        return self.value
+    def add(self,nodo):
+        self.listt.append[nodo]
+
+def numero 
+class hash:
+    def __init__(self):
+        self.list = [None]*3156
+    def put(self,key,val):
+        pos = val
+        if self.list[pos] is not None:
+            print("collision "+key+"<br>")
+            ok = False
+        for t in self.list[pos]:
+            if t[0] is key:
+                t[1] = val
+                ok = True
+        if not ok:
+            self.list[pos].append([key,val])
+        else:
+            self.list[pos] =[]
+            self.list[pos].append([key,val])
+
+    def get(self,key):
+        for e in self.list[hashstr(key,self.size)]:
+            if e[0] is key:
+                return e[1]
+
+
+
+
+
+
+#para los archivo txt
+print("Ingrese la palabra:")
+inicio=input()
+inicio=inicio.upper()
+print("Ingrese la palabra Final:")
+final=input()
+final=final.upper()
+
+#lo que hare mas adelante
+listado=lista(inicio,final)
+texto.open("words_length_4.txt")
+aux=(texto.read().split())
+for i in range(len(aux)):
+    listado.put(aux(i))
+for j in range(len(aux)):
+    listado.adyacente(aux(i))

@@ -1,0 +1,37 @@
+
+print("Ingrese la palabra:")
+inicio=input()
+inicio=inicio.upper()
+print("Ingrese la palabra Final:")
+final=input()
+final=final.upper()
+diccionario={}
+listado=[None]
+texto=open('words_lenght_4.txt')
+aux=(texto.read().split())
+for i in range(len(aux)):
+    listado.append(aux[i])
+print(listado[10])
+for j in len(listado):
+    print(j)
+    for k in range(len(listado)):
+        print(k)
+        i=1
+        count=0
+        while i<5:
+            aux1=listado[j]
+            aux2=listado[k]
+            if aux1!=None and aux2!=None:
+                print("existe")
+                if aux1[i]==aux2[i]:
+                    print("contando")
+                    count+1
+            i+1
+        if count==3:
+            diccionario[listado[j]]=listado[k]
+        else:
+            diccionario[listado[j]]=None
+
+llaves= tuple(diccionario.keys())
+    
+

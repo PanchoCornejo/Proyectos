@@ -1,0 +1,5 @@
+cola[]
+vela[]
+cola.append[vela[]]
+cola[0].append("hola")
+print cola[0].

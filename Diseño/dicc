@@ -1,0 +1,95 @@
+
+diccionario={}
+listado=[None]
+texto=open('words_lenght_4.txt')
+aux=(texto.read().split())
+for i in range(len(aux)):
+    listado.append(aux[i])
+    diccionario[aux[i]]=[]
+    for j in range(len(aux)):
+        l=0
+        count=0
+        while l<4:
+            aux1=aux[i]
+            aux2=aux[j]
+            if aux1[l]==aux2[l]:
+                count=count+1
+            l=l+1
+        if(count==3):
+            diccionario[aux1].append(aux2)
+        j=j+1
+    i=i+1
+
+class Node:
+    def __init__(self, value):
+        self.prev = None
+        self.count = None
+        self.value = value
+    def previo(self,nodo):
+        self.prev=nodo
+    def getvalue(self):
+        return self.value
+
+class pila:
+    def __init__(self):
+        self.head=None
+        self.next=None
+        self.last=None
+    def pop(self):
+        if self.head==None:
+            print("No hay nada")
+        else:
+            fuera=self.head
+            aux=self.next
+            self.head=aux
+            return fuera
+    def put(self,nodo):
+        if self.head==None:
+            self.head=nodo
+            self.last=nodo
+            self.next=None
+        else:
+            aux=self.head
+            nodo.next=aux
+            self.head=nodo
+
+pilax=pila()
+
+def BFS(inicio,final,contador):
+    pilax.put(inicio)
+    b=diccionario[inicio]
+    print(diccionario[inicio])
+    c=len(b)
+    print("C vale :{}".format(c))
+    i=0
+    while i<c:
+        aux=diccionario[inicio][i]
+        pilita=pilax.head
+        while pilita:
+            if aux==pilax.last
+                visited=True
+            pilita=pilita.next
+        if visited==false:
+            
+        else:
+            
+        i=i+1
+
+def BFSS(inicio,final):
+    BFS(inicio,final,0)
+
+
+
+llaves= tuple(diccionario.keys())
+values= tuple(diccionario.values())
+
+
+
+
+print("Ingrese la palabra:")
+inicio=input()
+inicio=inicio.upper()
+print("Ingrese la palabra Final:")
+final=input()
+final=final.upper()
+buscar=BFSS(inicio,final)

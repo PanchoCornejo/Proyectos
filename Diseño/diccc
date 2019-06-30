@@ -1,0 +1,101 @@
+class Node:
+    def __init__(self, value):
+        self.prev = None
+        self.count = None
+        self.value = value
+    def previo(self,nodo):
+        self.prev=nodo
+    def getvalue(self):
+        return self.value
+
+diccionario={}
+visited={}
+listado=[None]
+texto=open('words_lenght_4.txt')
+aux=(texto.read().split())
+print(len(aux))
+largo=len(aux)
+for i in range(len(aux)):
+    listado.append(aux[i])
+    visited[aux[i]]=False
+    nodo=Node(aux[i])
+    diccionario[nodo.value]=[]
+    for j in range(len(aux)):
+        l=0
+        count=0
+        while l<4:
+            aux1=aux[i]
+            aux2=aux[j]
+            if aux1[l]==aux2[l]:
+                count=count+1
+            l=l+1
+        if(count==3):
+            nodito=Node(aux2)
+            if diccionario[nodo.value]==None:
+                diccionario[nodo.value].append(nodo)
+            else:
+                diccionario[nodo.value].append(nodito)
+        j=j+1
+    i=i+1
+
+
+class pila:
+    def __init__(self):
+        self.head=None
+        self.next=None
+        self.last=None
+    def pop(self):
+        if self.head==None:
+            print("No hay nada")
+        else:
+            fuera=self.head
+            aux=self.next
+            self.head=aux
+            return fuera
+    def put(self,nodo):
+        if self.head==None:
+            self.head=nodo
+            self.last=nodo
+            self.next=None
+        else:
+            aux1=self.head
+            nodo.next=aux1
+            self.head=nodo
+
+pilax=pila()
+
+def bfs(inicio,final):
+    queue=[]
+    inicioo=Node(inicio)
+    queue.append(inicio)
+    visited[inicio]=True
+    while queue:
+        inicio=queue.pop(0)
+        #print (num)
+        j=1
+        if inicio==final:
+            return(print("Encontrado"))
+        for j in len(diccionario[inicio]):
+            aux4=diccionario[inicio][j]
+            #print("aux",aux)
+            if(visited[aux4.value]==False):
+                queue.append(aux4.value)
+                visited[aux4.value]=True
+                diccionario[aux4.value][0].prev=inicio
+    return(print("No encontrado"))
+
+
+llaves= tuple(diccionario.keys())
+values= tuple(diccionario.values())
+
+
+
+
+print("Ingrese la palabra:")
+inicio=input()
+inicio=inicio.upper()
+print("Ingrese la palabra Final:")
+final=input()
+final=final.upper()
+fin=str(final)
+bfs(inicio,fin)

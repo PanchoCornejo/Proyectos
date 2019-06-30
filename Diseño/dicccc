@@ -1,0 +1,78 @@
+diccionario={}
+visited={}
+listado=[None]
+texto=open('words_lenght_4.txt')
+aux=(texto.read().split())
+#print(len(aux))
+largo=len(aux)
+print("Cargando.........")
+for i in range(len(aux)):
+    listado.append(aux[i])
+    visited[aux[i]]=False
+    diccionario[aux[i]]=[]
+    diccionario[aux[i]].append(aux[i])
+    diccionario[aux[i]].append(None)
+    for j in range(len(aux)):
+        l=0
+        count=0
+        while l<4:
+            aux1=aux[i]
+            aux2=aux[j]
+            if aux1[l]==aux2[l]:
+                count=count+1
+            l=l+1
+        if(count==3):
+            diccionario[aux1].append(aux2)
+        j=j+1
+    i=i+1
+
+def bfs(inicio,final):
+    comienzo=inicio
+    queue=[]
+    queue.append(inicio)
+    visited[inicio]=True
+    while queue:
+        inicio=queue.pop(0)
+        #print (num)
+        j=1
+        if inicio==final:
+            print("El camino seria:")
+            print(inicio)
+            termino=inicio
+            while termino!=comienzo:
+                termino=(diccionario[termino][1])
+                print(diccionario[termino][1])
+            print(diccionario[termino][1])
+            return(print("Encontrado"))
+        for j in range(2,len(diccionario[inicio])):
+            aux4=diccionario[inicio][j]
+            #print("aux",aux)
+            #print("Visitando {}".format(aux4))
+            if(visited[aux4]==False):
+                queue.append(aux4)
+                visited[aux4]=True
+                #print(diccionario[aux4])
+                diccionario[aux4][1]=inicio
+                if aux4==final:
+                    print("El camino seria:")
+                    print(aux4)
+                    termino=aux4
+                    #print("Revision1:{}".format(diccionario[termino][1]))
+                    #print("Revision2:{}".format(diccionario[aux4][1]))
+                    while termino!=comienzo:
+                        print(diccionario[termino][1])
+                        termino=(diccionario[termino][1])
+                    return(print("Encontrado"))
+                #print("Anterior es {}".format(diccionario[aux4][1]))
+    return(print("No encontrado"))
+
+print(diccionario['ADAM'])
+print(diccionario['ADAR'])
+print("Ingrese la palabra:")
+inicio=input()
+inicio=inicio.upper()
+print("Ingrese la palabra Final:")
+final=input()
+final=final.upper()
+fin=str(final)
+bfs(inicio,fin)
